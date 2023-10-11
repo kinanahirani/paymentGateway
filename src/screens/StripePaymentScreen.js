@@ -1,6 +1,7 @@
 import {StripeProvider, usePaymentSheet} from '@stripe/stripe-react-native';
 import React, {useState, useEffect} from 'react';
 import {Button, View, Alert, SafeAreaView} from 'react-native';
+import CButton from '../components/CButton';
 
 const StripePaymentScreen = () => {
   const {initPaymentSheet, presentPaymentSheet} = usePaymentSheet();
@@ -58,7 +59,7 @@ const StripePaymentScreen = () => {
       <StripeProvider
         publishableKey="pk_test_51NxQtdSDFRmJPXwkTzeCk7xoyLGkxqWoR3w9Lqwomduzn432W4vWuORYHNsGfmUCWMQZUqy2GMkl8F52mXt83mug00lebRXXdC"
         merchantIdentifier="merchant.identifier">
-        <Button title="Open Payment Sheet" onPress={openPaymentSheet} />
+        <CButton title="Stripe" onPress={openPaymentSheet} />
       </StripeProvider>
     </SafeAreaView>
   );
