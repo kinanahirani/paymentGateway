@@ -1,8 +1,9 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import CButton from '../components/CButton';
 import {useNavigation} from '@react-navigation/native';
 import {verticalScale} from '../helpers/sizeHelpers';
+import CImage from '../components/CImage';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -15,23 +16,24 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CButton
-        title={'Pay using Stripe'}
+      <CImage
+        path={require('../assets/images/stripe.png')}
         onPress={() => handlePaymentPress('stripe', 'StripePaymentScreen')}
-        extraStyles={{marginBottom: verticalScale(25)}}
+        extraStyles={{marginVertical:verticalScale(10)}}
       />
-      <CButton
-        title={'Pay using Razorpay'}
+      <CImage
+        path={require('../assets/images/Razorpay.png')}
         onPress={() => handlePaymentPress('razorpay', 'RazorpayPaymentScreen')}
-        extraStyles={{marginBottom: verticalScale(25)}}
+        extraStyles={{marginTop:verticalScale(10), marginBottom:verticalScale(20)}}
       />
-      <CButton
-        title={'Pay using PayPal'}
+      <CImage
+        path={require('../assets/images/PayPal.png')}
         onPress={() => handlePaymentPress('paypal', 'PayPalPaymentScreen')}
       />
-      {/* {selectedPaymentMethod === 'stripe' && <StripePaymentScreen />}
-      {selectedPaymentMethod === 'razorpay' && <RazorpayPaymentScreen />}
-      {selectedPaymentMethod === 'paypal' && <PayPalPaymentScreen />} */}
+      {/* <CButton
+        title={'Pay using Paytm'}
+        onPress={() => handlePaymentPress('paytm', 'PaytmPaymentScreen')}
+      /> */}
     </SafeAreaView>
   );
 };

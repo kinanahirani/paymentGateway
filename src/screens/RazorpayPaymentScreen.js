@@ -1,20 +1,32 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Alert} from 'react-native';
 import React from 'react';
 import RazorpayCheckout from 'react-native-razorpay';
 import CButton from '../components/CButton';
+import CHeader from '../components/CHeader';
+import CPayImage from '../components/CPayImage';
+import {moderateScale} from '../helpers/sizeHelpers';
 
-const RazorpayPaymentScreen = () => {
+const RazorpayPaymentScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+    <>
+      <CHeader navigation={navigation} name={'Razorpay Payment'} />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
+        }}>
+        <CPayImage />
+      </SafeAreaView>
+      <View
+        style={{
+          backgroundColor: 'white',
+          alignItems: 'center',
+          paddingBottom: moderateScale(10),
+        }}>
         <CButton
-          title={'Razorpay'}
+          title={'Proceed for Payment!'}
           extraStyles={{}}
           onPress={() => {
             var options = {
@@ -33,16 +45,24 @@ const RazorpayPaymentScreen = () => {
             };
             RazorpayCheckout.open(options)
               .then(data => {
-                alert(`Success: ${data.razorpay_payment_id}`);
+                // alert(`Success: ${data.razorpay_payment_id}`);
+                Alert.alert('Payment Successful!');
               })
               .catch(error => {
                 console.log(error);
-                alert(`Error: ${error.code} | ${error.description}`);
+                // alert(`Error: ${error.code} | ${error.description}`);
+                Alert.alert('Payment failed');
               });
           }}
         />
       </View>
-    </SafeAreaView>
+    </>
+
+    // <SafeAreaView style={styles.container}>
+    //   <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+
+    //   </View>
+    // </SafeAreaView>
   );
 };
 

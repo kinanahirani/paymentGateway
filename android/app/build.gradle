@@ -107,6 +107,7 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation 'com.google.android.material:material:1.7.0' //for CardForm in stripe
+    implementation 'com.paytm.appinvokesdk:appinvokesdk:1.6.15' //paytm
     // implementation "com.braintreepayments.api:data-collector:3.+"
     // implementation "com.braintreepayments.api:braintree:3.+"
 

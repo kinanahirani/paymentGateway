@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import StripePaymentScreen from '../screens/StripePaymentScreen';
 import RazorpayPaymentScreen from '../screens/RazorpayPaymentScreen';
 import PayPalPaymentScreen from '../screens/PayPalPaymentScreen';
+import PaytmPaymentScreen from '../screens/PaytmPaymentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const AppNavigator = () => {
         name="PayPalPaymentScreen"
         component={PayPalPaymentScreen}
       />
+      <Stack.Screen name="PaytmPaymentScreen" component={PaytmPaymentScreen} />
     </Stack.Navigator>
   );
 };

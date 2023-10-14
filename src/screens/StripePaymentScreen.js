@@ -1,9 +1,12 @@
 import {StripeProvider, usePaymentSheet} from '@stripe/stripe-react-native';
-import React, {useState, useEffect} from 'react';
-import {Button, View, Alert, SafeAreaView} from 'react-native';
+import React from 'react';
+import {View, Alert, SafeAreaView} from 'react-native';
 import CButton from '../components/CButton';
+import CPayImage from '../components/CPayImage';
+import {moderateScale} from '../helpers/sizeHelpers';
+import CHeader from '../components/CHeader';
 
-const StripePaymentScreen = () => {
+const StripePaymentScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = usePaymentSheet();
 
   const initializePaymentSheet = async () => {
@@ -29,7 +32,7 @@ const StripePaymentScreen = () => {
         Authorization:
           'Bearer sk_test_51NxQtdSDFRmJPXwkbMxojo28f9M1dwLvrZV3X8XYsaCFaC4p11cPqjiyDi9yyn1yc5F7bEAfDKWyRf7bN49ptpXS00V3690662',
       },
-      body: 'amount=1000&currency=usd&payment_method_types[]=card',
+      body: 'amount=1000&currency=inr&payment_method_types[]=card',
     });
 
     const data = await response.json();
@@ -46,22 +49,39 @@ const StripePaymentScreen = () => {
     const {error} = await presentPaymentSheet();
     console.log('back in open payment');
     if (error) {
-      Alert.alert('Error code:', error.message);
+      // Alert.alert('Error code:', error.message);
+      Alert.alert('Payment has been cancelled');
     } else {
-      setPaymentSheetVisible(true);
       console.log('opened');
+      Alert.alert('Payment Successful!');
     }
   };
 
   return (
-    <SafeAreaView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <StripeProvider
-        publishableKey="pk_test_51NxQtdSDFRmJPXwkTzeCk7xoyLGkxqWoR3w9Lqwomduzn432W4vWuORYHNsGfmUCWMQZUqy2GMkl8F52mXt83mug00lebRXXdC"
-        merchantIdentifier="merchant.identifier">
-        <CButton title="Stripe" onPress={openPaymentSheet} />
-      </StripeProvider>
-    </SafeAreaView>
+    <>
+      <CHeader navigation={navigation} name={'Stripe Payment'} />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
+        }}>
+        <CPayImage />
+      </SafeAreaView>
+      <View
+        style={{
+          backgroundColor: 'white',
+          alignItems: 'center',
+          paddingBottom: moderateScale(10),
+        }}>
+        <StripeProvider
+          publishableKey="pk_test_51NxQtdSDFRmJPXwkTzeCk7xoyLGkxqWoR3w9Lqwomduzn432W4vWuORYHNsGfmUCWMQZUqy2GMkl8F52mXt83mug00lebRXXdC"
+          merchantIdentifier="merchant.identifier">
+          <CButton title="Proceed for Payment!" onPress={openPaymentSheet} />
+        </StripeProvider>
+      </View>
+    </>
   );
 };
 
