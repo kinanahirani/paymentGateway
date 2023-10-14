@@ -1,4 +1,4 @@
-package com.paymentgateway;
+package com.tridhyatech.reusable.paymentgateway;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;

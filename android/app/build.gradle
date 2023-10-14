@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.paymentgateway"
+    namespace "com.tridhyatech.reusable.paymentgateway"
     defaultConfig {
-        applicationId "com.paymentgateway"
+        applicationId "com.tridhyatech.reusable.paymentgateway"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
